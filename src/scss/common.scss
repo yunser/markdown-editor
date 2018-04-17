@@ -1,0 +1,40 @@
+blockquote {
+    margin: 0;
+    padding: 1px 16px;
+}
+.ui-article blockquote {
+    border-left: 4px solid #aaa;
+}
+html,
+body,
+#app {
+    height: 100%;
+}
+.ui-page-common .ui-page-header {
+    z-index: 10000;
+}
+.page-editor .ui-page-container {
+    padding: 0;
+    height: 100%;
+}
+.ace_editor {
+    height: 1000%;
+    box-shadow: 0 1px 6px rgba(0,0,0,.117647), 0 1px 4px rgba(0,0,0,.117647);
+}
+.editor-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    overflow: auto;
+}
+.preview-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    padding: 16px;
+    overflow: auto
+}
