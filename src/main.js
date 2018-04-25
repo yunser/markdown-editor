@@ -9,7 +9,6 @@ import './scss/main.scss'
 Vue.config.productionTip = false
 
 Vue.prototype.$http = http
-Vue.prototype.$qs = qs
 Vue.prototype.$storage = storage
 
 Vue.use(ui)
