@@ -20,8 +20,8 @@
 
 <script>
     const ace = window.ace
-    const saveAs = window.saveAs
     const marked = window.marked
+    const Intent = window.Intent
 
     export default {
         data () {
@@ -31,9 +31,9 @@
                     menu: [
                         {
                             type: 'icon',
-                            icon: 'file_download',
-                            click: this.download,
-                            title: '下载'
+                            icon: 'all_inclusive',
+                            click: this.link,
+                            title: '用其他应用打开'
                         }
                     ]
                 }
@@ -133,7 +133,10 @@
                 console.log(window.intent.data)
                 let data = window.intent.data
                 this.editor.setValue(data)
-
+                let extras = window.intent.action.extras
+                if (extras && extras.fileName) {
+                    this.fileName = extras.fileName
+                }
                 this.page.menu.push({
                     type: 'icon',
                     icon: 'check',
@@ -148,9 +151,24 @@
                     owner.window.close()
                 }, 100)
             },
-            download() {
-                let blob = new Blob([this.editor.getValue()], {type: 'text/plain;charset=utf-8'})
-                saveAs(blob, 'yunser.com-' + new Date().getTime() + '.md')
+            link() {
+                let intent = new Intent({
+                    action: 'http://webintent.yunser.com/?',
+                    type: 'text/plain',
+                    data: this.editor.getValue(),
+                    extras: {
+                        fileName: this.fileName || 'yunser.com-' + new Date().getTime() + '.md'
+                    }
+                })
+                navigator.startActivity(intent, (data, extras) => {
+                    console.log('成功1', data, extras)
+                    this.editor.setValue(data)
+                    if (extras && extras.fileName) {
+                        this.fileName = extras.fileName
+                    }
+                }, data => {
+                    console.log('失败')
+                })
             },
             loadTextFromUrl(url) {
                 this.$http.get(url).then(
