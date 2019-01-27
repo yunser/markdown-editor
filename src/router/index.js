@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const Home = resolve => require(['@/views/Home'], resolve)
-const About = resolve => require(['@/views/About'], resolve)
-
+const Editor = resolve => require(['@/views/Editor'], resolve)
+const Markdown2Html = resolve => require(['@/views/Markdown2Html'], resolve)
+const Html2Markdown = resolve => require(['@/views/Html2Markdown'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
 Vue.use(Router)
@@ -14,8 +15,16 @@ let routes = [
         component: Home
     },
     {
-        path: '/about',
-        component: About
+        path: '/editor',
+        component: Editor
+    },
+    {
+        path: '/markdown2html',
+        component: Markdown2Html
+    },
+    {
+        path: '/html2markdown',
+        component: Html2Markdown
     },
     {
         path: '*',

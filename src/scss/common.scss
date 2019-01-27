@@ -38,3 +38,32 @@ body,
     padding: 16px;
     overflow: auto
 }
+
+.tool-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+    height: 64px;
+}
+
+@media all and (max-width: 800px) {
+    .mode-editor {
+        .editor-box {
+            width: 100%;
+        }
+        .preview-box {
+            display: none;
+        }
+    }
+}
+
+.mode-preview {
+    .editor-box {
+        display: none;
+    }
+    .preview-box {
+        width: 100%;
+    }
+}
