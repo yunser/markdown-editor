@@ -1,10 +1,12 @@
 <template>
     <my-page title="Markdown 转 HTML" :page="page">
-        <textarea class="textarea" v-model="code" rows="10" placeholder="Markdown"></textarea>
-        <br>
-        <ui-raised-button class="btn" primary label="转换" @click="encode" />
-        <br>
-        <textarea class="textarea" v-model="result" rows="10" placeholder="HTML" v-if="result"></textarea>
+        <div class="common-container">
+            <textarea class="textarea" v-model="code" rows="10" placeholder="Markdown"></textarea>
+            <br>
+            <ui-raised-button class="btn" primary label="转换" @click="encode" />
+            <br>
+            <textarea class="textarea" v-model="result" rows="10" placeholder="HTML" v-if="result"></textarea>
+        </div>
     </my-page>
 </template>
 
@@ -18,11 +20,12 @@
                 result: '',
                 page: {
                     menu: [
-                        // {
-                        //     type: 'icon',
-                        //     icon: 'help',
-                        //     to: '/help'
-                        // }
+                        {
+                            type: 'icon',
+                            icon: 'help',
+                            href: 'https://project.yunser.com/products/75c13750e7c211eabd36bd87ff5eff33',
+                            target: '_blank'
+                        }
                     ]
                 }
             }

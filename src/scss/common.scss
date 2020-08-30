@@ -1,3 +1,15 @@
+.common-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 16px 16px 80px 16px;
+}
+.yui-page-side {
+    z-index: 1000000;
+    background-color: #fff;
+}
+.yui-page-common .yui-page-header {
+    z-index: 1000000;
+}
 blockquote {
     margin: 0;
     padding: 1px 16px;
@@ -23,7 +35,7 @@ body,
 }
 .editor-box {
     position: absolute;
-    top: 0;
+    top: 64px;
     left: 0;
     width: 50%;
     height: 100%;
@@ -31,7 +43,7 @@ body,
 }
 .preview-box {
     position: absolute;
-    top: 0;
+    top: 64px;
     right: 0;
     width: 50%;
     height: 100%;

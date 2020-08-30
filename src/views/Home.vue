@@ -1,6 +1,8 @@
 <template>
-    <my-page title="格式" :page="page">
-        <app-list :data="groups" />
+    <my-page title="Markdown" :page="page">
+        <div class="common-container">
+            <app-list :data="groups" />
+        </div>
     </my-page>
 </template>
 
@@ -17,12 +19,13 @@
                                 name: '编辑器',
                                 desc: '',
                                 icon: '/static/img/markdown.svg',
-                                to: '/editor'
+                                to: '/editor',
+                                target: '_blank',
                             },
                         ]
                     },
                     {
-                        name: '其他',
+                        name: '转换',
                         apps: [
                             {
                                 name: 'HTML 转 MD',
@@ -35,6 +38,12 @@
                                 desc: 'Markdown 转 HTML',
                                 icon: '/static/img/markdown.svg',
                                 to: '/markdown2html'
+                            },
+                            {
+                                name: 'MD 转 JSON',
+                                desc: 'Markdown 转 JSON',
+                                icon: '/static/img/markdown.svg',
+                                to: '/markdown2json'
                             }
                         ]
                     }

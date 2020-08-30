@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 const Home = resolve => require(['@/views/Home'], resolve)
 const Editor = resolve => require(['@/views/Editor'], resolve)
-const Markdown2Html = resolve => require(['@/views/Markdown2Html'], resolve)
+// const Markdown2Html = resolve => require(['@/views/Markdown2Html'], resolve)
 const Html2Markdown = resolve => require(['@/views/Html2Markdown'], resolve)
 const Error404 = resolve => require(['@/views/error/Error404'], resolve)
 
@@ -18,10 +18,8 @@ let routes = [
         path: '/editor',
         component: Editor
     },
-    {
-        path: '/markdown2html',
-        component: Markdown2Html
-    },
+    { path: '/markdown2html', component: resolve => require(['@/views/Markdown2Html'], resolve) },
+    { path: '/markdown2json', component: resolve => require(['@/views/Markdown2json'], resolve) },
     {
         path: '/html2markdown',
         component: Html2Markdown

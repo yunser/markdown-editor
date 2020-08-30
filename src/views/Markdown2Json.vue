@@ -1,17 +1,17 @@
 <template>
-    <my-page title="HTML 转 Markdown" :page="page">
+    <my-page title="Markdown 转 JSON" :page="page">
         <div class="common-container">
-            <textarea class="textarea" v-model="result" rows="10" placeholder="HTML"></textarea>
+            <textarea class="textarea" v-model="code" rows="10" placeholder="Markdown"></textarea>
             <br>
-            <ui-raised-button class="btn" primary label="转换" @click="html2md" />
+            <ui-raised-button class="btn" primary label="转换" @click="encode" />
             <br>
-            <textarea class="textarea" v-model="code" rows="10" placeholder="Markdown" v-if="code"></textarea>
+            <textarea class="textarea" v-model="result" rows="10" placeholder="HTML" v-if="result"></textarea>
         </div>
     </my-page>
 </template>
 
 <script>
-    const toMarkdown = window.toMarkdown
+    const marked = window.marked
 
     export default {
         data () {
@@ -23,7 +23,7 @@
                         {
                             type: 'icon',
                             icon: 'help',
-                            href: 'https://project.yunser.com/products/81a24af0e7c211eabd36bd87ff5eff33',
+                            href: 'https://project.yunser.com/products/5e1222e0e7c211eabd36bd87ff5eff33',
                             target: '_blank'
                         }
                     ]
@@ -32,8 +32,21 @@
         },
         mounted() {
             this.init()
+            // this.debug()
         },
         methods: {
+            debug() {
+                this.code = `# 一级标题
+## 二级标题
+
+这是段落。
+
+第二段
+
+* 列表项1
+* 列表项2
+`
+            },
             init() {
                 this.initWebIntents()
             },
@@ -42,27 +55,20 @@
                     return
                 }
                 let data = window.intent.data
-                this.result = data
+                this.code = data
             },
-            html2md() {
-                var text = this.result
+            encode() {
+                var text = this.code
                 if (!text) {
-                    alert('请填写要解码的内容')
+                    alert('请输入 Markdown')
                     return
                 }
-                this.code = toMarkdown(text, {})
-                if (window.intent && !this.isAddMenu) {
-                    this.isAddMenu = true
-                    this.page.menu.push({
-                        type: 'icon',
-                        icon: 'check',
-                        click: this.finish,
-                        title: '完成'
-                    })
-                }
+                const result = marked.lexer(text)
+                console.log('result', result)
+                this.result = JSON.stringify(result, null, 4)
             },
             finish() {
-                window.intent.postResult(this.code)
+                window.intent.postResult(this.result)
                 setTimeout(() => {
                     let owner = window.opener || window.parent
                     owner.window.close()
